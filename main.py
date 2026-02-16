@@ -1,6 +1,7 @@
 from ui import FamilyTreeManagerUi
 from family_tree import FamilyTree
 from input_extractor import InputExtractor
+from person_factory import PersonFactory, PersonType
 
 
 def family_tree_generator():
@@ -10,7 +11,12 @@ def family_tree_generator():
 
     print('Reading files...')
     # read files
-    input_data = InputExtractor().import_data()
+    input_data = InputExtractor()
+
+    # test person factory
+    factory = PersonFactory(input_data=input_data)
+    person = factory.build_person(PersonType.ROOT)
+    print(person)
 
     print('Generating Family Tree...')
     # generate tree

@@ -1,6 +1,5 @@
 
 
-
 class FamilyTreeManagerUi:
     """Family Tree Manager UI Class"""
 

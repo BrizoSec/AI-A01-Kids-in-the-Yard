@@ -13,10 +13,10 @@ class Person:
     parent2 = None
     spouse = None
     generation_rank = int
-    yr_married: int
     yr_deceased: int
     children: list = field(default_factory=list)
     yr_born: int = None
+    yr_married: int = None
 
 
     def get_entire_name(self):
