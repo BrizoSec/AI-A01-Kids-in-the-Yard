@@ -2,25 +2,22 @@ from ui import FamilyTreeManagerUi
 from family_tree import FamilyTree
 from input_extractor import InputExtractor
 from person_factory import PersonFactory, PersonType
-
+from tree_factory import FamilyTreeFactory
 
 def family_tree_generator():
     """Generate a family tree and launch the interactive UI."""
-    # generate family tree TODO
-    # should use a builder class
 
     print('Reading files...')
     # read files
     input_data = InputExtractor()
 
-    # test person factory
-    factory = PersonFactory(input_data=input_data)
-    person = factory.build_person(PersonType.ROOT)
-    print(person)
-
+    # build person and tree factories
     print('Generating Family Tree...')
-    # generate tree
-    tree = FamilyTree()
+    person_factory = PersonFactory(input_data=input_data)
+    print(person_factory.build_person(PersonType.ROOT))
+
+    tree_factory = FamilyTreeFactory(input_data=input_data, person_factory=person_factory)
+    tree: FamilyTree = tree_factory.build_tree()
 
     print("Are you interested in: ")
     # get ui input from user

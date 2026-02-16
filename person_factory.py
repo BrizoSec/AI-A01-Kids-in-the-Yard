@@ -1,5 +1,5 @@
 from enum import Enum
-from helper_utils import gender_picker
+from helper_utils import gender_picker, f_name_picker, l_name_picker, deceased_year_picker
 from person import Person
 import random
 
@@ -46,7 +46,10 @@ class PersonFactory:
 
 
     def build_child(self, parent1, parent2, birth_year):
-        pass
+        """create child person"""
+
+        _gender = gender_picker(self.input_data.gender_prob_data, f"{birth_year - (birth_year % 10)}s")
+        # _f_name =
 
 
     def build_spouse(self, person: Person):
@@ -59,9 +62,9 @@ class PersonFactory:
 
         # using data passed in
         gender = gender_picker(self.input_data.gender_prob_data, decade)
-        f_name = 'tom'
-        l_name = 'jacker'
-        yr_deceased = 1989
+        f_name = f_name_picker(self.input_data.first_name_data, self.input_data.gender_prob_data, decade)
+        l_name = l_name_picker(self.input_data.last_name_data, self.input_data.rank_prob_data, decade)
+        yr_deceased = deceased_year_picker(self.input_data.life_exp_data, yr_born)
         
         # increment counter
         self.uid += 1
@@ -74,5 +77,3 @@ class PersonFactory:
             # yr_married=None,
             yr_deceased=yr_deceased,
             yr_born=yr_born)
-    
-        

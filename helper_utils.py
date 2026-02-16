@@ -22,21 +22,47 @@ def gender_picker(data, decade):
     return random.choices(genders, weights=weights)[0]
 
 
-def fname_picker():
-    pass
+def f_name_picker(first_name_data, gender_prob_data, decade):
+    """Pick a first name weighted by frequency for specific gender  """
+
+    # determine name gender probabilistically based on decade
+    gender_based_names = gender_picker(gender_prob_data, decade)
+
+    first_name_options: list = first_name_data.get((gender_based_names, decade), [])
+
+    # return unknown if no lookup values
+    if not first_name_options:
+        return 'NA'
+
+    # convert to names and weights to rows (name, weight) with values as columns (transpose)
+    # Citation: https://www.w3schools.com/python/ref_func_zip.asp
+    names, weights = zip(*first_name_options)
+
+    # use rand to get a random value therein
+    return random.choices(names, weights=weights)[0]
 
 
-def lname_picker():
-    pass
+def l_name_picker(last_name_data, rank_prob_data, decade):
+    """Pick a last name weighted by rank probability for a given decade."""
+    candidates = last_name_data.get(decade, [])
+
+    # return unknown if no lookup values
+    if not candidates:
+        return 'NA'
+
+    # get name and rank probabilities
+    names = [name for name, rank, dec in candidates]
+    weights = [rank_prob_data[rank - 1] for name, rank, dec in candidates]
+
+    return random.choices(names, weights=weights)[0]
 
 
-def deceased_year_picker():
-    pass
+def deceased_year_picker(life_exp_data, yr_born):
+    """Pick a year of death based on life expectancy +/- 10 years."""
 
+    # extract life exp for given year or use default
+    life_exp = life_exp_data.get(yr_born, 75.0)
 
-def birth_rate_picker():
-    pass
-
-
-def marriage_rate_picker():
-    pass
+    # add random offset
+    offset = random.uniform(-10, 10)
+    return int(yr_born + life_exp + offset)
