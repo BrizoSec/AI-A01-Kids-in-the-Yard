@@ -1,10 +1,12 @@
 class FamilyTree:
+    """Family Tree Class"""
+
     def __init__(self):
         """Init an empty family tree with no people or roots."""
         self.people = []
         self.roots = []
 
-    def add_person(self, person):
+    def add_people(self, person):
         """Add person to the family tree."""
         self.people.append(person)
 

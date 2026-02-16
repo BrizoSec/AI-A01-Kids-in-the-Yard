@@ -16,9 +16,8 @@ def family_tree_generator():
     # generate tree
     tree = FamilyTree()
 
-    print("Are you interested in:")
+    print("Are you interested in: ")
     # get ui input from user
-
     FamilyTreeManagerUi(tree).start()
 
 
