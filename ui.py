@@ -39,7 +39,7 @@ class FamilyTreeManagerUi:
 
     def get_total(self):
         """Get total number of people in the tree"""
-        return len(ft.people)
+        return len(self.family_tree.people)
 
 
     def get_decade_people(self):
