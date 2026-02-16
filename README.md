@@ -1,3 +1,5 @@
-# AI Assignment 01 - Kids in the Yard
+# CS 562 - Family Tree Generator
 
-See assignment details on Canvas.
+## Notes
+
+- Must complete graduate level requirements
