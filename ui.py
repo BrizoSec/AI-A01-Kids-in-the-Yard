@@ -63,6 +63,10 @@ class FamilyTreeManagerUi:
                 else:
                     print('Invalid input')
 
+            # TODO - investigate infinte loop issue on file import
+            except EOFError:
+                break
+
             except Exception as e:
                 print(f"ERROR: {e}")
 
