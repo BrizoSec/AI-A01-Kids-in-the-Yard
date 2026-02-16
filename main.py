@@ -3,8 +3,8 @@ from family_tree import FamilyTree
 from input_extractor import InputExtractor
 
 
-
 def family_tree_generator():
+    """Generate a family tree and launch the interactive UI."""
     # generate family tree TODO
     # should use a builder class
 

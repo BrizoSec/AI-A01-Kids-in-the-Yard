@@ -1,10 +1,11 @@
 from pathlib import Path
 import csv
 
+
 class InputExtractor:
 
-
     def __init__(self):
+        """Init the extractor and load all data from CSV files."""
         self.file_path = Path(__file__).parent / "data"
 
         # data sets
@@ -21,6 +22,7 @@ class InputExtractor:
 
 
     def import_data(self):
+        """Load all reference data from CSV files """
 
         # load first name data
         fp = self.file_path / "first_names.csv"

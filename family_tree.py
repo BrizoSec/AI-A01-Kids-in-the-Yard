@@ -1,20 +1,22 @@
-
 class FamilyTree:
     def __init__(self):
+        """Init an empty family tree with no people or roots."""
         self.people = []
-        self.root = []
+        self.roots = []
 
     def add_person(self, person):
+        """Add person to the family tree."""
         self.people.append(person)
 
     def get_people(self):
+        """return the list of all people in the family tree."""
         return self.people
 
     def get_root(self):
-        return self.root
+        """return the list of root ancestors in the family tree."""
+        return self.roots
 
-    def set_root(self, root):
-        self.root = root
-
-    # get total count
-
+    def add_root(self, root):
+        """Add root to the family tree."""
+        self.roots.append(root)
+        self.people.append(root)
