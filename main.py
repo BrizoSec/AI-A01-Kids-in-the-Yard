@@ -1,5 +1,8 @@
 from ui import FamilyTreeManagerUi
 from family_tree import FamilyTree
+from input_extractor import InputExtractor
+
+
 
 def family_tree_generator():
     # generate family tree TODO
@@ -7,6 +10,7 @@ def family_tree_generator():
 
     print('Reading files...')
     # read files
+    input_data = InputExtractor().import_data()
 
     print('Generating Family Tree...')
     # generate tree
