@@ -46,10 +46,31 @@ class PersonFactory:
 
 
     def build_child(self, parent1, parent2, birth_year):
-        """create child person"""
+        """Build a child person from two parents."""
+        decade = f"{birth_year - (birth_year % 10)}s"
+        gender = gender_picker(self.input_data.gender_prob_data, decade)
 
-        _gender = gender_picker(self.input_data.gender_prob_data, f"{birth_year - (birth_year % 10)}s")
-        # _f_name =
+        # get first naame and died year
+        f_name = f_name_picker(self.input_data.first_name_data, self.input_data.gender_prob_data, decade)
+        yr_deceased = deceased_year_picker(self.input_data.life_exp_data, birth_year)
+
+        # inherit a parent's last name if either parent is a root of the tree
+        if parent1.generation_rank == 1 or parent2.generation_rank == 1:
+            l_name = random.choice([parent2.l_name, parent1.l_name])
+
+        # otherwise, just pick from last name list and use rank weights - kind of weird logic
+        else:
+            l_name = l_name_picker(self.input_data.last_name_data, self.input_data.rank_prob_data, decade)
+
+        self.uid += 1
+
+        return Person(
+            uid=self.uid,
+            f_name=f_name,
+            l_name=l_name,
+            gender=gender,
+            yr_deceased=yr_deceased,
+            yr_born=birth_year)
 
 
     def build_spouse(self, person: Person):
