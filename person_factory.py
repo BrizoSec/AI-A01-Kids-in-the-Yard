@@ -54,14 +54,9 @@ class PersonFactory:
         f_name = f_name_picker(self.input_data.first_name_data, self.input_data.gender_prob_data, decade)
         yr_deceased = deceased_year_picker(self.input_data.life_exp_data, birth_year)
 
-        # inherit a parent's last name if either parent is a root of the tree
-        if parent1.generation_rank == 1 or parent2.generation_rank == 1:
-            # Citation: https://docs.python.org/3/library/random.html#random.choice
-            l_name = random.choice([parent2.l_name, parent1.l_name])
-
-        # otherwise, just pick from last name list and use rank weights - kind of weird logic
-        else:
-            l_name = l_name_picker(self.input_data.last_name_data, self.input_data.rank_prob_data, decade)
+        # descendants inherit a last name from one of their parents
+        # Citation: https://docs.python.org/3/library/random.html#random.choice
+        l_name = random.choice([parent1.l_name, parent2.l_name])
 
         self.uid += 1
 
