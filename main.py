@@ -15,20 +15,22 @@ def family_tree_generator():
     print('Generating Family Tree...')
     person_factory = PersonFactory(input_data=input_data)
 
-    # build two root people and a child from them
-    parent1 = person_factory.build_person(PersonType.ROOT)
-    parent1.generation_rank = 1
-    parent2 = person_factory.build_person(PersonType.ROOT)
-    parent2.generation_rank = 1
-    child = person_factory.build_person(PersonType.CHILD, parent1=parent1, parent2=parent2, birth_year=1975)
-
-    spouse = person_factory.build_person(PersonType.SPOUSE, person=parent1)
-
-    # print results - testing
-    print(f'Parent 1: {parent1}')
-    print(f'Parent 2: {parent2}')
-    print(f'Child:    {child}')
-    print(f'Spouse:   {spouse}')
+    ############### TESTING ######################
+    # # build two root people and a child from them
+    # parent1 = person_factory.build_person(PersonType.ROOT)
+    # parent1.generation_rank = 1
+    # parent2 = person_factory.build_person(PersonType.ROOT)
+    # parent2.generation_rank = 1
+    # child = person_factory.build_person(PersonType.CHILD, parent1=parent1, parent2=parent2, birth_year=1975)
+    #
+    # spouse = person_factory.build_person(PersonType.SPOUSE, person=parent1)
+    #
+    # # print results - testing
+    # print(f'Parent 1: {parent1}')
+    # print(f'Parent 2: {parent2}')
+    # print(f'Child:    {child}')
+    # print(f'Spouse:   {spouse}')
+    ############### TESTING ######################
 
     tree_factory = FamilyTreeFactory(input_data=input_data, person_factory=person_factory)
     tree: FamilyTree = tree_factory.build_tree()
