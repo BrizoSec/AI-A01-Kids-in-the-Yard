@@ -70,11 +70,37 @@ class PersonFactory:
             l_name=l_name,
             gender=gender,
             yr_deceased=yr_deceased,
-            yr_born=birth_year)
+            yr_born=birth_year,
+            generation_rank=parent1.generation_rank + 1)
 
 
     def build_spouse(self, person: Person):
-        pass
+        """Create partner / spouse """
+        # first get the decade of the spouse using the +/- 10 rule
+        offset_yr = self.rnd_gen.randint(-10, 10)
+        yr_born = person.yr_born + offset_yr
+        dec = f"{yr_born - (yr_born % 10)}s"
+
+        # then we can calc the gender and so on
+        gender = gender_picker(self.input_data.gender_prob_data, dec)
+        f_name = f_name_picker(self.input_data.first_name_data, self.input_data.
+                               gender_prob_data, dec)
+        l_name = l_name_picker(self.input_data.last_name_data, self.input_data.
+                               rank_prob_data, dec)
+        yr_deceased = deceased_year_picker(self.input_data.life_exp_data, yr_born)
+
+        # increment counter
+        self.uid += 1
+
+        return Person(
+            uid=self.uid,
+            f_name=f_name,
+            l_name=l_name,
+            gender=gender,
+            # yr_married=None,
+            yr_deceased=yr_deceased,
+            yr_born=yr_born,
+            generation_rank=person.generation_rank)
 
 
     def build_root_person(self):

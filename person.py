@@ -12,8 +12,8 @@ class Person:
     parent1 = None
     parent2 = None
     spouse = None
-    generation_rank = int
     yr_deceased: int
+    generation_rank: int = None
     children: list = field(default_factory=list)
     yr_born: int = None
     yr_married: int = None
