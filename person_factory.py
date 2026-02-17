@@ -78,7 +78,12 @@ class PersonFactory:
         """Create partner / spouse """
         # first get the decade of the spouse using the +/- 10 rule
         offset_yr = self.rnd_gen.randint(-10, 10)
-        yr_born = person.yr_born + offset_yr
+
+        # seeing an issue for root people, their parents have NA's in the name so going to limit it to the lowest
+        # date in the dataset
+        minium_dataset_yr = min(int(d[:-1]) for _, d in self.input_data.first_name_data.keys())
+        yr_born = max(minium_dataset_yr, person.yr_born + offset_yr)
+
         dec = f"{yr_born - (yr_born % 10)}s"
 
         # then we can calc the gender and so on
