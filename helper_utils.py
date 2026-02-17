@@ -18,7 +18,7 @@ def gender_picker(data, decade):
     genders = list(probs.keys())
     weights = list(probs.values())
 
-    # use rand to get a random value therein
+    # Citation: https://docs.python.org/3/library/random.html#random.choices
     return random.choices(genders, weights=weights)[0]
 
 
@@ -67,6 +67,6 @@ def deceased_year_picker(life_exp_data, yr_born):
     # extract life exp for given year or use default
     life_exp = life_exp_data.get(yr_born, 75.0)
 
-    # add random rand_off
+    # Citation: https://docs.python.org/3/library/random.html#random.uniform
     rand_off = random.uniform(-10, 10)
     return int(yr_born + life_exp + rand_off)

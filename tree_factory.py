@@ -51,6 +51,7 @@ class FamilyTreeFactory:
         birth_rate = self.input_data.birth_rate_data.get(decade, self.DEF_BIRTH_RATE)
 
         # child count: uniform between ceil(rate - 1.5) and ceil(rate + 1.5)
+        # Citation: https://docs.python.org/3/library/math.html#math.ceil
         floor_child_cnt = math.ceil(-1.5 + birth_rate)
         ceiling_child_cnt = math.ceil(1.5 + birth_rate)
 
@@ -71,7 +72,8 @@ class FamilyTreeFactory:
             if rnd_child_cnt == 1:
                 birth_year = parent1.yr_born + 35
             else:
-                # else split them up evenly between 25 and 45
+                # evenly space children across a 20yr window 
+                # Citation: used a modified example from here: https://realpython.com/np-linspace-numpy/
                 birth_offset = round(i * 20 / (rnd_child_cnt - 1))
                 birth_year = parent1.yr_born + 25 + birth_offset
 
