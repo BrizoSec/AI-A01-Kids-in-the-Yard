@@ -30,7 +30,9 @@ def f_name_picker(first_name_data, gender_prob_data, decade):
 
     first_name_options: list = first_name_data.get((gender, decade), [])
 
-    # return unknown if no lookup values
+    # TODO - there is a possibility where spouse name is NA because the spouse is +10 years
+    # and there is no data for beyound 2120 - accepting that as an edge case
+
     if not first_name_options:
         return 'NA'
 

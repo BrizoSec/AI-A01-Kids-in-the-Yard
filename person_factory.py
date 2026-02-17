@@ -81,8 +81,9 @@ class PersonFactory:
 
         # seeing an issue for root people, their parents have NA's in the name so going to limit it to the lowest
         # date in the dataset
-        minium_dataset_yr = min(int(d[:-1]) for _, d in self.input_data.first_name_data.keys())
-        yr_born = max(minium_dataset_yr, person.yr_born + offset_yr)
+        minium_dataset_yr = min(int(d[:-1]) for _, d in self.input_data.first_name_data.keys()) # get min year from decades in dataset
+        maximum_dataset_yr = max(int(d[:-1]) for _, d in self.input_data.first_name_data.keys()) # get max year from decades in dataset
+        yr_born = max(minium_dataset_yr, min(maximum_dataset_yr, person.yr_born + offset_yr))
 
         dec = f"{yr_born - (yr_born % 10)}s"
 
