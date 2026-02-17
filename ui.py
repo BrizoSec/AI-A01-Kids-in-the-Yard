@@ -89,9 +89,8 @@ class FamilyTreeManagerUi:
             # increment by 1 for new detection
             _dec[decade] += 1
 
-            # sort decades
-            decades_sorted = sorted(_dec.items(), key=lambda x: x[0])
+        # sort decades and print results
+        decades_sorted = sorted(_dec.items(), key=lambda x: x[0])
 
-            # print each item in decades which is now sorted
-            for decade, count in decades_sorted.items():
-                print(f"{decade}: {count}")
+        for decade, count in decades_sorted:
+            print(f"{decade}: {count}")
